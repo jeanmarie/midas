@@ -3,7 +3,26 @@
  *  l'objet de l'application est d'éffectuer un contrôle de caisse
  * pour une salle de spactacle
  ********************************************************************/
+
 le projet en est au tout début
 il doit remplacer un tableur excel réalisé en 1995 
 avec une vestion trop ancienne pour être opérationnel
 avec les dernière versions
+
+Les fonctionnalité envisagées:
+
+saisie de la caisse en début de journée
+saisie de la caisse en fin de journée
+saisie du montant vendu par type de règlement
+	caisse
+	chèque
+	CB
+	facturation
+	carte MRA
+	autres cartes à définie (devrai être paramétrable)
+
+saisie des spectacles vendu
+	code du spectacle
+	nombre
+	total calculé	
+
