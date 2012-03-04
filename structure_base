@@ -1,0 +1,9 @@
+Nom de la base : midas
+liste des tables:
+	caisse
+	reglement
+	agents
+	type_reglement
+	spectacle
+
+	
