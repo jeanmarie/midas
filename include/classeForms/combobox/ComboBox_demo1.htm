@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0039)http://iakt.rdsnet.ro/demo/widgetsDemo/ -->
+<HTML><HEAD><TITLE>classeForms\ComboBox : Usage des listes éditables</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+href="The MX Widgets Suite demo - powerful databinded form controls_fichiers/demo.css" 
+type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY>
+<SCRIPT language=JavaScript src="ComboBox.js"></SCRIPT>
+<FORM action="" method=GET>
+<TABLE cellSpacing=3 cellPadding=1>
+  <TBODY>
+  <TR>
+    <TD vAlign=top noWrap bgColor=#cccccc colSpan=3><FONT 
+      size=2><STRONG>Combo Box n&deg;=1 </STRONG></FONT></TD>
+  </TR>
+  <TR>
+    <TD vAlign=top align=left colSpan=3><HR noShade SIZE=1>
+      <FONT face="Courier New, Courier, mono">&nbsp; </FONT></TD></TR>
+  <TR>
+    <TD width="179" align=right vAlign=center noWrap>Choisir une valeur </TD>
+    <TD width="421" vAlign=center><FONT face="Arial, Helvetica, sans-serif">
+<SCRIPT>
+	var manufact_restrict = 'No';
+	var manufact_norec = '50';
+	var manufact_style = 'width:150px';
+	var manufact_edittype = 'S';
+	var manufact_el = new Array("","51", "Adobe","1299", "Agfa","12", "Agri Intranet","434", "Alabama","220", "Alberto","844", "Alejandro","1080", "Alex","20", "Alexandru","743", "AlternateWords","725", "Andre 78","1263", "Andy The Man","368", "Another new field","152", "antonio","1279", "Apex Web Media","831", "App software associates","173", "Aquila!","1085", "Aspen Grove","426", "Auczone","167", "Autoaudio","1226", "Autodesk","154", "AWS","744", "Axis","1193", "Balaji","494", "Benny","1127", "Benny Han","668", "Benny Hansen","835", "BFG","82", "big nose robots","363", "Biwater","1178", "Bizmatics","1176", "Bizmatics!","807", "Bobs Your Uncle","345", "Bogdan","786", "Bonnsport.de","1183", "Booth Inc.");
+</SCRIPT>
+
+<input onKeyPress="return di_inputKeyPress(this, event);" id="manufact_EDIT" 
+      onKeyDown="return di_inputKeyDown(this, event);" 
+      onBlur="di_onBlur(this, event);" 
+	  onKeyUp="autoComplete(this, event);" 
+      style="WIDTH: 150px" maxlength=25 name="manufact_EDIT" 
+	  value="Alberto">
+	  
+<INPUT id="manufact_v" name="manufact_v" style="font:'Times New Roman','Vernada','serif'; width:20px; height:20px" value="&#9660;" 
+	  onfocus="di_vFocused('manufact')" 
+	  onclick="return di_buttonPressed('manufact')" tabIndex="-1" type="button">
+	  
+<INPUT id="manufact" type="hidden" value="51" name="manufact">
+       </FONT></TD>
+    </TR>
+  <TR>
+    <TD vAlign=top noWrap bgColor=#cccccc colSpan=3><FONT 
+      size=2><STRONG>Combo Box n&deg;=2</STRONG></FONT></TD>
+  </TR>
+  <TR>
+    <TD vAlign=top align=left colSpan=3><HR noShade SIZE=1>
+    </TD></TR>
+  <TR>
+    <TD vAlign=center noWrap align=right>Choisir une 2nd valeur :</TD>
+    <TD vAlign=center><FONT face="Arial, Helvetica, sans-serif">
+    <SCRIPT>
+		var w5_restrict = 'No';
+		var w5_norec = '50';
+		var w5_style = 'width:400px';
+		var w5_edittype = 'S';
+		var w5_el = new Array("","1","France","2","Allemagne","3","Angleterre","4","Italie","5","Espagne","6","Portugal" );
+	</SCRIPT>
+    <INPUT id="w5_EDIT" name="w5_EDIT" style="width:400px" value="" 
+		onkeypress="return di_inputKeyPress(this, event);" 	  	
+		onkeydown="return di_inputKeyDown(this, event);" 
+		onblur="di_onBlur(this, event);" 
+		onkeyup="autoComplete(this, event);" >
+
+	<INPUT id="w5_v" name="w5_v" style="font:'Times New Roman','Vernada','serif'; width:20px; height:20px" value="&#9660;" 
+		onfocus="di_vFocused('w5')" 
+		onclick="return di_buttonPressed('w5')" 
+		tabIndex=-1 type="button">
+		
+	<INPUT id="w5" type=hidden value="" name="w5"> </FONT></TD>
+
+    </TR></TBODY></TABLE>
+<HR noShade SIZE=1>
+
+<input type="submit" name="Submit" value="Submit">
+<input type="reset" name="Submit2" value="Reset" onclick="alert('koko');return false;">
+</FORM>
+</BODY></HTML>

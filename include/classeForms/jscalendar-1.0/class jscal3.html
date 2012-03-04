@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- $Id: index.html,v 1.15 2005/03/05 14:38:10 mishoo Exp $ -->
+
+<head>
+<meta http-equiv="content-type" content="text/xml; charset=utf-8" />
+<title>The Coolest DHTML Calendar - Online Demo</title>
+<link rel="stylesheet" type="text/css" media="all" href="skins/aqua/theme.css" title="Aqua" />
+
+
+<!-- import the calendar script -->
+<script type="text/javascript" src="calendar.js"></script>
+
+<!-- import the language module -->
+<script type="text/javascript" src="lang/calendar-fr.js"></script>
+
+<!-- other languages might be available in the lang directory; please check
+your distribution archive. -->
+
+<!-- helper script that uses the calendar -->
+<script type="text/javascript">
+function MM_findObj(n, d) { //v4.01 
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) { 
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);} 
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n]; 
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); 
+  if(!x && d.getElementById) x=d.getElementById(n); return x; 
+} 
+
+
+
+
+
+
+function JsCalendar(id, format, showsTime, showsOtherMonths) {	
+	this.el = MM_findObj(id);
+	this.format = format;
+	this.showsTime = showsTime;
+	this.showsOtherMonths = showsOtherMonths;
+
+	this.selected = function(cal, date) {
+	  cal.sel.value = date; // just update the date in the input field.
+	  if (cal.dateClicked) {
+	    cal.callCloseHandler(); // this calls "onClose" (see above)
+	  } 
+	}
+
+
+	this.closeHandler = function(cal) {
+	  cal.hide();                        // hide the calendar
+	}
+
+	this.JsCalendar_Show = function() {
+		if (this.el.disabled) return false;
+		// first-time call, create the calendar.
+		var cal = new Calendar(1, null, this.selected, this.closeHandler);
+
+		// uncomment the following line to hide the week numbers
+		cal.weekNumbers = true;
+    	if (typeof this.showsTime == "string") {
+      		cal.showsTime = true;
+      		cal.time24 = (this.showsTime == "24");
+    	}
+		if (this.showsOtherMonths) {
+			cal.showsOtherMonths = true;
+		}
+		cal.setRange(1900, 2070);        // min/max year allowed.
+		cal.create();
+		cal.setDateFormat(this.format);    // set the specified date format
+		cal.parseDate(this.el.value);      // try to parse the text in field
+		cal.sel = this.el;                 // inform it what input field we use
+
+		// the reference element that we pass to showAtElement is the button that
+		// triggers the calendar.  In this example we align the calendar bottom-right
+		// to the button.
+		cal.showAtElement(this.el, "B1");        // show the calendar
+		return false;
+	}
+
+}
+
+
+
+</script>
+
+
+
+</head>
+<body>
+
+<h2><a href="http://www.dynarch.com/projects/calendar/"
+title="Visit the project website">jscalendar</a>-1.0
+"It is happening again"</h2>
+
+<p>
+
+
+<form action="#">
+
+<b>Date #1:</b> <input type="text" name="date1" id="sel1" size="30">
+<a href='#' id='kiki' onClick="return toto.JsCalendar_Show();"> n°=1 </a>
+<script>
+    toto = new JsCalendar('sel1', '%d/%m/%Y', false,true);
+</script>    
+
+
+
+<b>Date #2:</b> <input type="text" name="date2" id="sel2" size="30" disabled="disabled">
+<a href='#' id='kiki' onClick="return tata.JsCalendar_Show();"> n°=2 </a>
+<script>
+    tata = new JsCalendar('sel2', '%d/%m/%Y %H:%M', '24',true);
+</script>    
+
+<b>Date #3:</b> <input type="text" name="date2" id="sel3" size="30">
+<a href='#' id='kiki' onClick="return titi.JsCalendar_Show();"> n°=2 </a>
+<script>
+    titi = new JsCalendar('sel3', '%d/%m/%Y %H:%M', '24',true);
+</script>    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</form>
+</body></html>

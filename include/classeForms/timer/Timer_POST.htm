@@ -1,0 +1,39 @@
+<html>
+<head>
+<script>
+var a = new String(document.location);
+var qString;
+var Qs;
+function QsObj(noms, valeurs){
+this.noms = noms;
+this.valeurs = valeurs;
+this.getValue = searchByName;
+}
+function querystring(){
+var noms=new Array();
+var valrs=new Array();
+Qs = new String(a.split("?")[1]);
+var params = Qs.split('%26');
+for (var i=0;i<params.length;i++){
+noms[i] = new String(params[i]).split("=")[0];
+valrs[i] = new String(params[i]).split("=")[1];
+}
+qString = new QsObj(noms, valrs);
+}
+function searchByName(nom){
+for (var i=0; i<this.noms.length; i++){
+if (this.noms[i]==nom){
+return this.valeurs[i];
+}
+}
+return ('');
+}
+querystring();
+</script>
+</head>
+<body>
+<script>
+alert( qString.getValue('timer_view') );
+</script>
+</body>
+</html>

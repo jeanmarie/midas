@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Tab Pane Demo (WebFX)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+
+
+<p>&nbsp;</p>
+
+<link id="webfx-tab-style-sheet" type="text/css" rel="stylesheet" href="TabPane.css" />
+<style type="text/css">
+.dynamic-tab-pane-control .tab-page {
+	height:		300px;
+}
+.dynamic-tab-pane-control.tab-pane {
+	position:	relative;
+	width:		600px;
+}
+</style>
+<script type="text/javascript" src="TabPane.js"></script>
+
+<form action="" method="get">
+
+
+
+
+coco
+
+
+<!-- DEBUT DE L'ONGLET -->
+<div class="tab-pane" id="tabPane1">
+<script type="text/javascript">
+tp1 = new WebFXTabPane( document.getElementById( "tabPane1" ),false );
+</script>
+
+<div class="tab-page" id="toto jojo"><h2 class="tab">General</h2>
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "toto jojo" ) );</script>
+<table width="100%" border="0">
+  <tr>
+    <td>label 2</td>
+    <td>Ceci est le texte de l'onglet n°=1 </td>
+  </tr>		
+</table>
+		
+</div>
+
+<div class="tab-page" id="coco"><h2 class="tab">Security</h2>	
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "coco" ) );</script>
+		
+<table width="100%" border="0">
+  <tr>
+    <td>label 2</td>
+    <td>Ceci est le texte de l'onglet n°=2 </td>
+  </tr>		
+</table>
+		
+</div>
+
+<div class="tab-page" id="tabPage3"><h2 class="tab">Privacy</h2>		
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "tabPage3" ) );</script>
+		
+		Ceci est le texte de l'onglet n°=3
+		
+</div>
+
+<div class="tab-page" id="tabPage4"><h2 class="tab">Content</h2>
+  <p class="tab">&nbsp;  </p>
+  <script type="text/javascript">tp1.addTabPage( document.getElementById( "tabPage4" ) );</script>
+		
+		Ceci est le texte de l'onglet n°=4
+
+		
+</div>
+
+</div>
+<script type="text/javascript">
+//<![CDATA[
+	setupAllTabs();
+	tp1.setSelectedIndex(3);
+//]]>
+</script>
+<!-- FIN DE L'ONGLET -->
+
+<input name="versonglet2" type="button" value="Activer l'onglet 2 (indice=1)"  onclick="tp1.setSelectedIndex(1)"/>
+</form>
+</body>
+</html>

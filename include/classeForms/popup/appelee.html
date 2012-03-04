@@ -1,0 +1,42 @@
+<HTML><HEAD><TITLE>Popup de choix</TITLE>
+
+<SCRIPT language="javascript">
+//D'autres scripts sur http://www.toutjavascript.com
+//Si vous utilisez ce script, merci de m'avertir !  < webmaster@toutjavascript.com >
+
+function Voir() {
+	document.write('hello=');
+	document.write(window.opener.document.forms["origine"].elements["choix"].value);
+	document.write('<br>toto=');
+	document.write(window.opener.document.forms["origine"].elements["toto"].value);
+}
+
+function Reporter(l) {
+	var choix=l.options[l.options.selectedIndex].value;
+	window.opener.document.forms["origine"].elements["choix"].value=choix;
+	window.opener.document.forms["origine"].elements["toto"].value=choix;
+}
+Voir();
+
+
+</SCRIPT>
+</HEAD>
+<CENTER><BODY><BR><BR>
+<FONT SIZE="2" COLOR="navy" face=arial>
+
+Faites votre choix dans cette liste. <BR>
+Il sera reportée dans le formulaire de la fenêtre appelante.
+<FORM>
+	<SELECT name="liste" onChange="Reporter(this);self.close()">
+		<OPTION value="">Votre choix ...</OPTION>
+		<OPTION value="Voiture">Voiture</OPTION>
+		<OPTION value="Moto">Moto</OPTION>
+		<OPTION value="Vélo">Vélo</OPTION>
+	</SELECT>
+</FORM>
+
+
+
+</FONT>
+</BODY></CENTER>
+</HTML>

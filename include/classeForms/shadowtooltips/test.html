@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+	<style type="text/css">
+	
+	
+	#shadowtooltips_tooltip{
+		background-color:#EEE;
+		border:1px solid #000;
+		position:absolute;
+		display:none;
+		z-index:20000;
+		padding:2px;
+		font-size:0.9em;
+		-moz-border-radius:6px;	/* Rounded edges in Firefox */
+		font-family: "Trebuchet MS", "Lucida Sans Unicode", Arial, sans-serif;
+		
+	}
+	#shadowtooltips_tooltipShadow{
+		position:absolute;
+		background-color:#555;
+		display:none;
+		z-index:10000;
+		opacity:0.7;
+		filter:alpha(opacity=70);
+		-khtml-opacity: 0.7;
+		-moz-opacity: 0.7;
+		-moz-border-radius:6px;	/* Rounded edges in Firefox */
+	}
+	</style>
+<script type="text/javascript" src="shadowtooltips.js"></script>
+
+</head>
+
+<body>
+<script>
+	function ma_fonction() {
+		return 'hello <img src="bubble_bottom.gif">';
+	}
+	o = new showTooltip_init();
+</script>
+<h1>Roll your mouse over the links in the text below</h1>	
+<P>Splendida porro oculi <a href="#" onmouseout="o.hideTooltip()" onmouseover="o.showTooltip(event,'This is a tooltip with a transparent shadow effect. Can you see the letters underneath the shadow?');return false">Roll over me</a> uitantque tueri. Splendida porro oculi fugitant uitantque tueri. 
+</P>
+<form id="form1" name="form1" method="post" action="">
+  <label>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <p>dfsdf
+              <select name="select">
+                </select>
+            </p>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+  </label>
+</form>
+
+<P>Sol etiam caecat, contra si tendere pergas propterea quia uis magnast ipsius. Lurida <a href="#" onmouseout="o.hideTooltip()" onmouseover="o.showTooltip(event,'This script works in both IE and Firefox. It also works in Opera, but that browser doesn\'t support CSS opacity, so the shadow won\'t be transparent');return false">Roll over me too!</a> quaequmque tuentur arquati, quia luroris de corpore eorum semina multa fluent. Splendida porro oculi fugitant uitantque tueri. Et alte aera per purrum grauiter simulacra feruntur. Praeterea splendor quiqumque est acer adurit saepe oculos. Et alte aera per purrum grauiter simulacra feruntur. Sol etiam caecat, contra si tendere pergas propterea quia uis magnast ipsius. Lurida praeterea fiunt quaequmque tuentur arquati, quia luroris de corpore eorum semina multa fluent. Splendida porro oculi fugitant uitantque tueri. Sol etiam caecat, contra si tendere pergas propterea quia uis magnast ipsius. Et alte aera per purrum grauiter simulacra feruntur.</P>
+<a href="#" onmouseout="o.hideTooltip()" onmouseover="o.showTooltip(event,ma_fonction());return false">Roll over me</a>
+</body>
+</html>

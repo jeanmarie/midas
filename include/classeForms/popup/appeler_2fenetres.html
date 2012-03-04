@@ -1,0 +1,30 @@
+<HTML><HEAD><TITLE>Tout JavaScript.com - Popup Communiquant</TITLE>
+<SCRIPT type="text/JavaScript">
+//D'autres scripts sur http://www.toutjavascript.com
+//Si vous utilisez ce script, merci de m'avertir !  < webmaster@toutjavascript.com >
+function OuvrirPopup(page,nom,option) {
+  window.open(page,nom,option);
+}
+function called() {
+OuvrirPopup('appelee.html','popupchoix','width=300,height=400,menubar=no,status=no');
+location.href='appelee.html';
+}
+
+</SCRIPT></HEAD>
+<BODY bgcolor="white">
+<FONT face="arial" color="navy" size="2">
+
+<B><BIG><CENTER>Communiquer avec la fenêtre appelante</CENTER></BIG></B><BR>
+Depuis le popup il est possible d'atteindre l'objet <SPAN class=code>window</SPAN> de la fenêtre appelante grâce à <SPAN class=code>window.opener</SPAN>. On peut ainsi modifier le contenu de la fenêtre appelante ou récupérer des informations du popup pour les replacer dans un formulaire de la fenêtre appelante.<BR>
+Cet exemple permet de placer dans le champ <SPAN class="code">choix</SPAN> du formulaire <SPAN class="code">origine</SPAN>
+
+<BR><BR><BR>
+
+<FORM name='origine'>
+	Votre choix <INPUT type="text" name="choix" disabled>&nbsp;<a href="javascript:OuvrirPopup('appelee.html','popupchoix','width=300,height=400,menubar=no,status=no');"><img src="upload.gif" width="16" height="16" border="0"></a><BR>
+	<INPUT type="button" value="Passer à la suite" onClick="called();"><BR>
+</FORM>
+</FONT>
+</BODY></HTML>
+<!-- Script développé par Olivier Hondermarck  webmaster@toutjavascript.com -->
+<!-- D'autres scripts et des conseils sur http://www.toutjavascript.com -->

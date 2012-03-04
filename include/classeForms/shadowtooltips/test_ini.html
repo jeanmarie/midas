@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+	<style type="text/css">
+	
+	
+	#dhtmlgoodies_tooltip{
+		background-color:#EEE;
+		border:1px solid #000;
+		position:absolute;
+		display:none;
+		z-index:20000;
+		padding:2px;
+		font-size:0.9em;
+		-moz-border-radius:6px;	/* Rounded edges in Firefox */
+		font-family: "Trebuchet MS", "Lucida Sans Unicode", Arial, sans-serif;
+		
+	}
+	#dhtmlgoodies_tooltipShadow{
+		position:absolute;
+		background-color:#555;
+		display:none;
+		z-index:10000;
+		opacity:0.7;
+		filter:alpha(opacity=70);
+		-khtml-opacity: 0.7;
+		-moz-opacity: 0.7;
+		-moz-border-radius:6px;	/* Rounded edges in Firefox */
+	}
+	</style>
+	<SCRIPT type="text/javascript">
+	
+	
+function showTooltip_init() {
+	this.dhtmlgoodies_tooltip = false;
+	this.dhtmlgoodies_tooltipShadow = false;
+	this.dhtmlgoodies_shadowSize = 4;
+	this.dhtmlgoodies_tooltipMaxWidth = 200;
+	this.dhtmlgoodies_tooltipMinWidth = 100;
+	this.dhtmlgoodies_iframe = false;
+	this.tooltip_is_msie = (navigator.userAgent.indexOf('MSIE')>=0 && navigator.userAgent.indexOf('opera')==-1 && document.all)?true:false;
+}
+
+showTooltip_init.prototype.showTooltip = function (e,tooltipTxt) {
+		
+		var bodyWidth = Math.max(document.body.clientWidth,document.documentElement.clientWidth) - 20;
+	
+		if(!this.dhtmlgoodies_tooltip){
+			this.dhtmlgoodies_tooltip = document.createElement('DIV');
+			this.dhtmlgoodies_tooltip.id = 'dhtmlgoodies_tooltip';
+			this.dhtmlgoodies_tooltipShadow = document.createElement('DIV');
+			this.dhtmlgoodies_tooltipShadow.id = 'dhtmlgoodies_tooltipShadow';
+			
+			document.body.appendChild(this.dhtmlgoodies_tooltip);
+			document.body.appendChild(this.dhtmlgoodies_tooltipShadow);	
+			
+			if(this.tooltip_is_msie){
+				this.dhtmlgoodies_iframe = document.createElement('IFRAME');
+				this.dhtmlgoodies_iframe.frameborder='5';
+				this.dhtmlgoodies_iframe.style.backgroundColor='#FFFFFF';
+				this.dhtmlgoodies_iframe.src = '#'; 	
+				this.dhtmlgoodies_iframe.style.zIndex = 100;
+				this.dhtmlgoodies_iframe.style.position = 'absolute';
+				document.body.appendChild(this.dhtmlgoodies_iframe);
+			}
+			
+		}
+		
+		this.dhtmlgoodies_tooltip.style.display='block';
+		this.dhtmlgoodies_tooltipShadow.style.display='block';
+		if(this.tooltip_is_msie) this.dhtmlgoodies_iframe.style.display='block';
+		
+		var st = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
+		if(navigator.userAgent.toLowerCase().indexOf('safari')>=0)st=0; 
+		var leftPos = e.clientX + 10;
+		
+		this.dhtmlgoodies_tooltip.style.width = null;	// Reset style width if it's set 
+		this.dhtmlgoodies_tooltip.innerHTML = tooltipTxt;
+		this.dhtmlgoodies_tooltip.style.left = leftPos + 'px';
+		this.dhtmlgoodies_tooltip.style.top = e.clientY + 10 + st + 'px';
+
+		
+		this.dhtmlgoodies_tooltipShadow.style.left =  leftPos + this.dhtmlgoodies_shadowSize + 'px';
+		this.dhtmlgoodies_tooltipShadow.style.top = e.clientY + 10 + st + this.dhtmlgoodies_shadowSize + 'px';
+		
+		if(this.dhtmlgoodies_tooltip.offsetWidth>this.dhtmlgoodies_tooltipMaxWidth){	/* Exceeding max width of tooltip ? */
+			this.dhtmlgoodies_tooltip.style.width = this.dhtmlgoodies_tooltipMaxWidth + 'px';
+		}
+		
+		var tooltipWidth = this.dhtmlgoodies_tooltip.offsetWidth;		
+		if(tooltipWidth<this.dhtmlgoodies_tooltipMinWidth) tooltipWidth = this.dhtmlgoodies_tooltipMinWidth;
+		
+		
+		this.dhtmlgoodies_tooltip.style.width = tooltipWidth + 'px';
+		this.dhtmlgoodies_tooltipShadow.style.width = this.dhtmlgoodies_tooltip.offsetWidth + 'px';
+		this.dhtmlgoodies_tooltipShadow.style.height = this.dhtmlgoodies_tooltip.offsetHeight + 'px';		
+		
+		if((leftPos + tooltipWidth)>bodyWidth){
+			this.dhtmlgoodies_tooltip.style.left = (this.dhtmlgoodies_tooltipShadow.style.left.replace('px','') - ((leftPos + tooltipWidth)-bodyWidth)) + 'px';
+			this.dhtmlgoodies_tooltipShadow.style.left = (this.dhtmlgoodies_tooltipShadow.style.left.replace('px','') - ((leftPos + tooltipWidth)-bodyWidth) + this.dhtmlgoodies_shadowSize) + 'px';
+		}
+		
+		if(this.tooltip_is_msie){
+			this.dhtmlgoodies_iframe.style.left = this.dhtmlgoodies_tooltip.style.left;
+			this.dhtmlgoodies_iframe.style.top = this.dhtmlgoodies_tooltip.style.top;
+			this.dhtmlgoodies_iframe.style.width = this.dhtmlgoodies_tooltip.offsetWidth + 'px';
+			this.dhtmlgoodies_iframe.style.height = this.dhtmlgoodies_tooltip.offsetHeight + 'px';
+		
+		}
+				
+	}
+	
+showTooltip_init.prototype.hideTooltip = function()
+	{
+		this.dhtmlgoodies_tooltip.style.display='none';
+		this.dhtmlgoodies_tooltipShadow.style.display='none';		
+		if(this.tooltip_is_msie) this.dhtmlgoodies_iframe.style.display='none';		
+	}
+	
+	</SCRIPT>	
+
+</head>
+
+<body>
+<script>
+	function ma_fonction() {
+		return 'hello <img src="bubble_bottom.gif">';
+	}
+	o = new showTooltip_init();
+</script>
+
+<h1>Roll your mouse over the links in the text below</h1>	
+<P>Splendida porro oculi <a href="#" onmouseout="o.hideTooltip()" onmouseover="o.showTooltip(event,'This is a tooltip with a transparent shadow effect. Can you see the letters underneath the shadow?');return false">Roll over me</a> uitantque tueri. Splendida porro oculi fugitant uitantque tueri. 
+</P>
+<form id="form1" name="form1" method="post" action="">
+  <label>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+
+          <blockquote>
+            <p>dfsdf
+              <select name="select">
+                </select>
+            </p>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+
+  </blockquote>
+  </label>
+</form>
+
+<P>Sol etiam caecat, contra si tendere pergas propterea quia uis magnast ipsius. Lurida <a href="#" onmouseout="hideTooltip()" onmouseover="o.showTooltip(event,'This script works in both IE and Firefox. It also works in Opera, but that browser doesn\'t support CSS opacity, so the shadow won\'t be transparent');return false">Roll over me too!</a> quaequmque tuentur arquati, quia luroris de corpore eorum semina multa fluent. Splendida porro oculi fugitant uitantque tueri. Et alte aera per purrum grauiter simulacra feruntur. Praeterea splendor quiqumque est acer adurit saepe oculos. Et alte aera per purrum grauiter simulacra feruntur. Sol etiam caecat, contra si tendere pergas propterea quia uis magnast ipsius. Lurida praeterea fiunt quaequmque tuentur arquati, quia luroris de corpore eorum semina multa fluent. Splendida porro oculi fugitant uitantque tueri. Sol etiam caecat, contra si tendere pergas propterea quia uis magnast ipsius. Et alte aera per purrum grauiter simulacra feruntur.</P>
+<a href="#" onmouseout="o.hideTooltip()" onmouseover="o.showTooltip(event,ma_fonction());return false">Roll over me</a>
+</body>
+</html>

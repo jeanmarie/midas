@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+	<title>dtree - EXEMPLE 3 : Mécanisme de sauvegarde des infos par copie</title>
+
+	<link rel="StyleSheet" href="dtree.css" type="text/css" />
+	<script type="text/javascript" src="dtree.js"></script>
+
+    <script language="JavaScript" type="text/JavaScript">
+<!--
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function SauveTree(newText) {
+  var obj = MM_findObj('choixtree'); if (obj) obj.value = newText;
+}
+
+
+//-->
+</script>
+</head>
+
+<body>
+
+<h1><a href="/">Destroydrop</a> &raquo; <a href="/javascripts/">Javascripts</a> &raquo; <a href="/javascripts/tree/">Tree</a></h1>
+
+<h2>Example</h2>
+
+<table width="350px"  border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+<div class="dtree">
+
+
+	<script type="text/javascript">
+		<!--
+
+		d = new dTree('d');
+		
+		d.config.useCookies=false;
+		d.icondirectory('./img/');
+
+		d.config.closeSameLevel=true;
+		d.config.useLines=false
+
+		d.add(0,-1,'My example tree','','',true);
+		d.add(1,0,'Node 1','javascript:SauveTree(1)');
+		d.add(2,0,'Node 2','javascript:SauveTree(2)');
+		d.add(3,1,'Node 1.1','javascript:SauveTree(3)');
+		d.add(4,0,'Node 3','javascript:SauveTree(4)');
+		d.add(5,3,'Node 1.1.1','javascript:SauveTree(5)');
+		d.add(6,5,'Node 1.1.1.1','javascript:SauveTree(6)');
+		d.add(107,0,'Node 4','javascript:SauveTree(107)');
+		d.add(8,1,'Node 1.2','javascript:SauveTree(8)');
+		d.add(99,0,'My Pictures','javascript:SauveTree(99)','Pictures I\'ve taken over the years','','','imgfolder.gif');
+		d.add(10,99,'The trip to Iceland','javascript:SauveTree(10)','Pictures of Gullfoss and Geysir');
+		d.add(11,99,'Mom\'s birthday','javascript:SauveTree(11)');
+		d.add(18,0,'Recycle Bin','javascript:SauveTree(18)','','','trash.gif');
+		
+		document.write(d);
+		d.openTo(6, true);
+
+		//-->
+	</script>
+
+</div>
+
+	</td>
+  </tr>
+</table>
+
+<form name="form1" id="form1" method="post" action="">
+  <p>Choix = 
+    <input name="choixtree" type="text" id="choixtree" />
+  </p>
+  <p>
+    <input type="submit" name="Submit" value="Submit" />
+</p>
+</form>
+<p>&nbsp;</p>
+</body>
+
+</html>

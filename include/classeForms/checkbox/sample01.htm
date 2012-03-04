@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>COCHES GRAPHIQUES</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+
+function MM_setTextOfTextfield(objName,x,newText) { //v3.0
+  var obj = MM_findObj(objName); if (obj) obj.value = newText;
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+body {
+	background-color: #FFF7F2;
+}
+-->
+</style></head>
+
+<body>
+<script src="checkbox.js"></script>
+<p>&nbsp;</p>
+<form name="form1" method="post" action="">
+  <input name="textfield" type="text" value="defaut">
+  <p><input name="KOKO" type="hidden" value="0">
+ <a onClick="obj1.ogc_click()">
+	<script>
+		var obj1 = new objGraphicCoche('KOKO');
+		obj1.ogc_bitmap('','design_on.gif','design_off.gif','design_disabled_on.gif','design_disabled_off.gif');
+		obj1.ogc_show();
+	</script>
+	</a>
+   Coche 1
+   <input name="button12" type="button" onClick="obj1.ogc_disable();" value="Disable 1">
+   <input name="button22" type="button" onClick="obj1.ogc_enable();" value="Enable 1">
+   <input name="button222" type="button" onClick="obj1.ogc_select();" value="Cocher 1 si actif">
+   <input name="button2222" type="button" onClick="obj1.ogc_unselect();" value="D&eacute;cocher 1 si Actif">
+  </p>
+
+   <p><input name="KiKi" type="hidden"  value="1">
+  <a onClick="obj2.ogc_click()">
+	<script>
+		var obj2 = new objGraphicCoche('KiKi',false,'cocher ICI pour activer Kiki');	
+		obj2.ogc_bitmap('./img/','default_on_rouge.gif');
+		obj2.ogc_show();
+	</script>
+  </a> Coche 2
+  <input name="button13" type="button" onClick="obj2.ogc_disable();" value="Disable 2">
+  <input name="button23" type="button" onClick="obj2.ogc_enable();" value="Enable 2">
+  <input name="button2223" type="button" onClick="obj2.ogc_select(true);" value="Cocher 2 m&ecirc;me si inactif">
+  <input name="button22222" type="button" onClick="obj2.ogc_unselect(true);" value="D&eacute;cocher 2 m&ecirc;me si Inactif">
+</p>
+
+   <p><input name="ME" type="hidden" value="1">
+  <a onClick="obj3.ogc_click()">
+	<script>
+		var obj3 = new objGraphicCoche('ME',true);	
+		obj3.ogc_show();
+	</script>
+  </a> Coche 3
+  <input name="button1" type="button" onClick="obj3.ogc_disable();" value="Disable 3">
+  <input name="button2" type="button" onClick="obj3.ogc_enable();" value="Enable 3">
+</p>
+   <p>
+     <input name="ME2" type="hidden" value="1">
+     <a onClick="obj4.ogc_click()">
+     <script>
+		var obj4 = new objGraphicCoche('ME2',true);	
+		obj4.ogc_bitmap('','nb_on.gif','nb_off.gif','nb_disabled_on.gif','nb_disabled_off.gif');
+		obj4.ogc_show();
+	 </script>
+     </a> Coche 4 
+     <input name="button14" type="button" onClick="obj4.ogc_disable();" value="Disable 4">
+     <input name="button24" type="button" onClick="obj4.ogc_enable();" value="Enable 4">
+</p>
+   <p>
+     <input name="ME22" type="hidden" value="1">
+     <a onClick="obj5.ogc_click()">
+     <script>
+		var obj5 = new objGraphicCoche('ME22',true);	
+		obj5.ogc_bitmap('','alum_orange_on.gif','alum_orange_off.gif','alum_orange_disabled_on.gif','alum_orange_disabled_off.gif');
+		obj5.ogc_show();
+	 </script>
+     </a> Coche 5 
+     <input name="button142" type="button" onClick="obj5.ogc_disable();" value="Disable 5">
+     <input name="button242" type="button" onClick="obj5.ogc_enable();" value="Enable 5">
+</p>
+
+   <p>
+     <input name="ME23" type="hidden" value="1">
+     <a onClick="obj6.ogc_click()">
+     <script>
+		var obj6 = new objGraphicCoche('ME23',true);	
+		obj6.ogc_bitmap('','alum_blue_on.gif','alum_blue_off.gif','alum_blue_disabled_on.gif','alum_blue_disabled_off.gif');
+		obj6.ogc_show();
+	 </script>
+     </a> Coche 6 
+     <input name="button142" type="button" onClick="obj6.ogc_disable();" value="Disable 6">
+     <input name="button242" type="button" onClick="obj6.ogc_enable();" value="Enable 6">
+</p>
+
+   <p>
+     <input name="ME24" type="hidden" value="0">
+     <a onClick="obj7.ogc_click()">
+     <script>
+		var obj7 = new objGraphicCoche('ME24',false);	
+		obj7.ogc_bitmap('','w2k_on.gif','w2k_off.gif','w2k_disabled_on.gif','w2k_disabled_off.gif');
+		obj7.ogc_show();
+	 </script>
+     </a> Coche 7 
+     <input name="button142" type="button" onClick="obj7.ogc_disable();" value="Disable 7">
+     <input name="button242" type="button" onClick="obj7.ogc_enable();" value="Enable 7">
+     <input type="button" name="Submit2" value="Etat ?" onClick="alert(eval('obj7.obj_coche'))">
+  </p>
+
+   <p>
+    <input type="submit" name="Submit" value="Submit">
+    <input type="Reset" name="Reset" value="Reset" onClick="obj1.ogc_reset();obj2.ogc_reset();obj3.ogc_reset();obj4.ogc_reset();obj5.ogc_reset();obj6.ogc_reset();obj7.ogc_reset()">
+	
+</p>
+</form>
+<?php
+	print "<PRE>";
+	print_r($_POST);
+	print "</PRE>";
+?>
+
+</body>
+</html>

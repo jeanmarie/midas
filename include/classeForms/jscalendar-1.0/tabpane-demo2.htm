@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Tab Pane Demo (WebFX)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+
+
+<p>&nbsp;</p>
+
+<link id="webfx-tab-style-sheet" type="text/css" rel="stylesheet" href="TabPane.css" />
+
+
+
+<style type="text/css">
+
+.dynamic-tab-pane-control .tab-page {
+	height:		200px;
+}
+
+.dynamic-tab-pane-control .tab-page .dynamic-tab-pane-control .tab-page {
+	height:		100px;
+}
+
+
+form {
+	margin:		0;
+	padding:	0;
+}
+
+
+
+
+
+
+</style>
+<script type="text/javascript" src="TabPane.js"></script>
+
+<div class="tab-pane" id="tabPane1">
+
+<script type="text/javascript">
+tp1 = new WebFXTabPane( document.getElementById( "tabPane1" ),false );
+</script>
+
+	<div class="tab-page" id="tabPage1">
+		<h2 class="tab">General</h2>
+		
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "tabPage1" ) );</script>
+		
+		This is text of tab 1. This is text of tab 1. This is text of tab 1. 
+		This is text of tab 1. This is text of tab 1. This is text of tab 1. 
+		This is text of tab 1. This is text of tab 1. This is text of tab 1.
+		
+	</div>
+
+	<div class="tab-page" id="tabPage2">
+		<h2 class="tab">Security</h2>
+		
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "tabPage2" ) );</script>
+		
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2.
+		<br />
+		<br />
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2.
+		
+	</div>
+
+	<div class="tab-page" id="tabPage3">
+		<h2 class="tab">Privacy</h2>
+		
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "tabPage3" ) );</script>
+		
+		This is text of tab 3. This is text of tab 3. This is text of tab 3. 
+		This is text of tab 3. This is text of tab 3. This is text of tab 3. 
+		This is text of tab 3. This is text of tab 3. This is text of tab 3.
+		
+	</div>
+
+	<div class="tab-page" id="tabPage4">
+		<h2 class="tab">Content</h2>
+		
+		<script type="text/javascript">tp1.addTabPage( document.getElementById( "tabPage4" ) );</script>
+		
+			This is text of tab 4. This is text of tab 4. This is text of tab 4. 
+			This is text of tab 4. This is text of tab 4. This is text of tab 4. 
+			This is text of tab 4. This is text of tab 4. This is text of tab 4.
+
+		
+	</div>
+
+</div>
+
+
+<p>Another tab below</p>
+
+
+<!-- id is not necessary unless you want to support multiple tabs with persistence -->
+<div class="tab-pane" id="tabPane2">
+
+	<div class="tab-page">
+		<h2 class="tab">General</h2>
+		
+		This is text of tab 1. This is text of tab 1. This is text of tab 1. 
+		This is text of tab 1. This is text of tab 1. This is text of tab 1. 
+		This is text of tab 1. This is text of tab 1. This is text of tab 1.
+		
+	</div>
+
+	<div class="tab-page">
+		<h2 class="tab">Security</h2>
+		
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2.
+		<br />
+		<br />
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+		This is text of tab 2. This is text of tab 2. This is text of tab 2.
+		
+	</div>
+
+	<div class="tab-page">
+		<h2 class="tab">Nested</h2>
+		
+		<!-- id is not necessary unless you want to support multiple tabs with persistence -->
+		<div class="tab-pane" id="tabPane3">
+
+			<div class="tab-page">
+				<h2 class="tab">General</h2>
+				
+				This is text of tab 1. This is text of tab 1. This is text of tab 1. 
+				This is text of tab 1. This is text of tab 1. This is text of tab 1. 
+				This is text of tab 1. This is text of tab 1. This is text of tab 1.
+				
+			</div>
+
+			<div class="tab-page">
+				<h2 class="tab">Privacy</h2>
+				
+				This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+				This is text of tab 2. This is text of tab 2. This is text of tab 2. 
+				This is text of tab 2. This is text of tab 2. This is text of tab 2.
+				
+			</div>
+
+		</div>
+		
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+setupAllTabs();
+
+//]]>
+</script>
+		<fieldset>
+			<legend ><span class="tab-page">Content</span></legend>
+			This is text of tab 4. This is text of tab 4. This is text of tab 4. 
+			This is text of tab 4. This is text of tab 4. This is text of tab 4. 
+			This is text of tab 4. This is text of tab 4. This is text of tab 4.
+		</fieldset>
+</body>
+</html>

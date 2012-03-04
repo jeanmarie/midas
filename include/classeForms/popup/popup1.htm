@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+	<TITLE>JavaScript Toolbox - PopupWindow</TITLE>
+<SCRIPT LANGUAGE="JavaScript" SRC="PopupWindow.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+// Create PopupWindow objects
+var testpopup1 = new PopupWindow("testdiv1");
+testpopup1.offsetY = 25;
+testpopup1.autoHide();
+
+var testpopup2 = new PopupWindow();
+testpopup2.offsetX=100;
+testpopup2.offsetY=50;
+testpopup2.setSize(200,200);
+testpopup2.autoHide();
+testpopup2.populate("<html><head></head><body><B>THIS IS A TEST</B></body></html>");
+
+var testpopup3 = new PopupWindow("testdiv2");
+testpopup3.offsetY=20;
+
+var testpopup4 = new PopupWindow();
+testpopup4.windowProperties="toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,alwaysRaised,dependent";
+testpopup4.setSize(200,200);
+testpopup4.autoHide();
+testpopup4.setUrl("popup2.htm");
+
+var testpopup5 = new PopupWindow();
+testpopup4.windowProperties="toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,alwaysRaised,dependent";
+testpopup5.setSize(400,200);
+testpopup5.autoHide();
+testpopup5.setUrl("popup2.htm");
+
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR=#FFFFFF LINK="#00615F" VLINK="#00615F" ALINK="#00615F">
+
+
+This link will popup a browser popup window 100 pixels to the right and 50 pixels below the clicked link.<BR>
+It will close itself whenever you click anywhere else on this page.<BR>
+If the window would be positioned off the screen, it will automatically be adjusted so as to not be off-screen.<BR>
+<A HREF="#" onClick="testpopup2.showPopup('anchor2');return false;" NAME="anchor2" ID="anchor2">Test Anchor 2</A>
+<BR><BR><BR><BR>
+
+This popup will not hide itself automatically, so it will stay showing permanently unless the developer provides a method to close it, as I've done:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#" onClick="testpopup3.showPopup('anchor3');return false;" NAME="anchor3" ID="anchor3">Test Anchor 3</A>
+
+<DIV ID="testdiv1" STYLE="position:absolute;visibility:hidden;background-color:yellow"></DIV>
+
+<DIV ID="testdiv2" STYLE="position:absolute;visibility:hidden;background-color:#cccccc">
+<B>This DIV does not auto-hide</B>.<BR>
+<A HREF="#" onClick="testpopup3.hidePopup();return false;">Hide It</A>
+</DIV>
+<BR><BR><BR><BR>
+
+This window will open up a small window to cnn.com<BR>
+It will close itself whenever you click anywhere else on this page.<BR>
+If the window would be positioned off the screen, it will automatically be adjusted so as to not be off-screen.<BR>
+<A HREF="#" onClick="testpopup4.showPopup('anchor4');return false;" NAME="anchor4" ID="anchor4">Test Anchor 4</A>
+<BR>
+<BR>
+Test Anchor 5 &nbsp;<a href="javascript:testpopup5.showPopup('anchor5')"  NAME="anchor5" ID="anchor5"><img src="upload.gif" width="16" height="16" border="0"></a> <BR>
+<form name="form1" method="post" action="">
+  <input type="text" name="textfield">
+  <input type="submit" name="Submit" value="..."  onClick="testpopup5.showPopup('anchor6');return false;" ID="anchor6">
+</form>
+
+</BODY>
+</HTML>

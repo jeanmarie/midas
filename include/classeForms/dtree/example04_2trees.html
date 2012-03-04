@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+	<title>dtree - EXEMPLE 4 : Gestion de 2 arbres</title>
+
+	<link rel="StyleSheet" href="dtree.css" type="text/css" />
+	<script type="text/javascript" src="dtree.js"></script>
+
+</head>
+
+<body>
+
+<h1>Example 4 : g&eacute;rer 2 arbres en m&ecirc;me temps </h1>
+
+<script type="text/javascript">
+		<!--
+
+		d = new dTree('d',1);
+		d.icondirectory('./img/');
+
+		d.config.useCookies=false;		
+		d.config.closeSameLevel=true;
+		d.config.useLines=false		
+		d.add(0,-1,'My example tree');
+		d.add(1,0,'Node 1','#');
+		d.add(2,0,'Node 2','#');
+		d.add(3,1,'Node 1.1','#');
+		d.add(4,0,'Node 3','#');
+		d.add(5,3,'Node 1.1.1','#');
+		d.add(6,5,'Node 1.1.1.1','#');
+		d.add(7,0,'Node 4','#');
+		d.add(8,1,'Node 1.2','#');
+		d.add(9,0,'My Pictures','#','Pictures I\'ve taken over the years','','','imgfolder.gif');
+		d.add(10,9,'The trip to Iceland','#','Pictures of Gullfoss and Geysir');
+		d.add(11,9,'Mom\'s birthday','#');
+		d.add(12,0,'Recycle Bin','#','','','trash.gif');
+		d.add(13,12,'Poubelle 1','#');
+		d.add(14,12,'Poubelle 2','#');
+		d.add(15,12,'Poubelle 3','#');
+
+		e = new dTree('e');
+		e.config.useCookies=false;		
+		e.icondirectory('./img/');
+
+		e.add(0,-1,'My example tree');
+		e.add(1,0,'Node 1','#');
+		e.add(2,0,'Node 2','#');
+		e.add(3,1,'Node 1.1','#');
+		e.add(4,0,'Node 3','#');
+		e.add(5,3,'Node 1.1.1','#');
+		e.add(6,5,'Node 1.1.1.1','#');
+		e.add(7,0,'Node 4','#');
+		e.add(8,1,'Node 1.2','#');
+		e.add(9,0,'My Pictures','#','Pictures I\'ve taken over the years','','','imgfolder.gif');
+		e.add(10,9,'The trip to Iceland','#','Pictures of Gullfoss and Geysir');
+		e.add(11,9,'Mom\'s birthday','#');
+		e.add(12,0,'Recycle Bin','#','','','trash.gif');
+
+		//-->
+	</script>
+
+<div class="dtree">
+
+	<p>&nbsp;</p>
+	<table width="586" border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <td width="260" height="67" valign="top" bordercolor="#000099">	<script type="text/javascript">
+		<!--
+
+		document.write(d);
+		d.openTo(6, true);
+
+		//-->
+	</script></td>
+    <td width="33" bordercolor="#FFFFFF">&nbsp;</td>
+    <td width="279" valign="top" bordercolor="#003399"><script type="text/javascript">
+		<!--
+
+		document.write(e);
+		e.openTo(9, true);
+
+		//-->
+	</script></td>
+  </tr>
+  <tr>
+    <td valign="top" bordercolor="#000099"> d.config.icondirectory=&quot;./img/&quot;;<br />
+d.config.useCookies=false; <br />
+d.config.closeSameLevel=true;<br />
+d.config.useLines=false </td>
+    <td bordercolor="#FFFFFF">&nbsp;</td>
+    <td valign="top" bordercolor="#003399"> e.config.icondirectory=&quot;./img/&quot;;<br />
+e.config.useCookies=false; </td>
+  </tr>
+</table>
+ </p>
+
+</div>
+
+<p><a href="mailto&#58;drop&#64;destroydrop&#46;com">&copy;2002-2003 Geir Landr&ouml;</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script language="JavaScript1.2" src="./masks.js"></script>
+
+
+</head>
+<body>
+
+<h2>Dynamic Field Masking</h2>
+
+<form name="frmExample" method="get" onsubmit="return false;">
+	<p>
+		<b>US Phone Number:</b><br />
+		<input type="text" name="string" value="" 
+				onkeydown="oStringMask.isAllowKeyPress(event,this);"
+				onkeyup="oStringMask.getKeyPress(event,this)"
+				onblur="this.value = oStringMask.format(this.value)" /><br />
+		Generic: (###) ###-####
+	</p>
+
+	<p>
+		<b>US Dollar:</b><br />
+		<input type="text" name="number" value=""
+				onkeydown="oNumberMask.isAllowKeyPress(event,this);"
+				onkeyup="oNumberMask.getKeyPress(event,this)"
+				onblur="this.value = oNumberMask.format(this.value)" /><br /><br />
+		Number: $#,###.00
+	</p>
+
+	<p>
+		<b>FR Date:</b><br />
+		<input type="text" name="date" value="" 
+				onkeydown="oDateMask.isAllowKeyPress(event,this);"
+				onkeyup="oDateMask.getKeyPress(event,this)"
+				onblur="this.value = oDateMask.format(this.value)" /><br /><br />
+		<br />
+		Date: dd/mm/yyyy
+</p>
+	<p>.
+	  <input type="submit" name="Submit" value="Submit">	
+    </p>
+</form>
+<script language="JavaScript1.2">
+<!--//
+	oStringMask = new Mask("(###) ###-####");
+	oNumberMask = new Mask("$#,###.00", "number");
+	oDateMask = new Mask("dd/mm/yyyy", "date");
+	//-->
+</script>
+
+</body>
+</html>

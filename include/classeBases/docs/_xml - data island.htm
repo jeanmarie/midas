@@ -1,0 +1,133 @@
+<html>
+<head>
+	<title>ActiveWidgets Grid :: Examples</title>
+	<style> body, html {margin:0px; padding: 0px; overflow: hidden;} </style>
+
+	<!-- ActiveWidgets stylesheet and scripts -->
+	<link href="../../classeGrid/styles/classic/grid.css" rel="stylesheet" type="text/css" ></link>
+	<script src="../../classeGrid/lib/grid.js"></script>
+
+	<!-- grid format -->
+	<style>
+		.active-controls-grid {height: 100%; font: menu;}
+
+		.active-column-0 {width:  80px;}
+		.active-column-1 {width:  80px;}
+		.active-column-2 {width: 200px; background-color: threedlightshadow;}
+		.active-column-3 {text-align: right;}
+		.active-column-4 {text-align: right;}
+		.active-column-5 {text-align: right;}
+
+		.active-grid-column {border-right: 1px solid threedshadow;}
+		.active-grid-row {border-bottom: 1px solid threedlightshadow;}
+	</style>
+</head>
+<body>
+	<xml id="xmlDataIsland">
+		<companies>
+			<company>
+        <timestamp>2004/08/20</timestamp>
+				<ticker>MSFT</ticker>
+				<name>Microsoft Corporation</name>
+				<mktcap>314571.156</mktcap>
+				<sales>32187.000</sales>
+				<employees>55000</employees>
+			</company>
+			<company>
+        <timestamp>1998/04/01</timestamp>
+				<ticker>ORCL</ticker>
+				<name>Oracle Corporation</name>
+				<mktcap>62615.266</mktcap>
+				<sales>9519.000</sales>
+				<employees>40650</employees>
+			</company>
+			<company>
+        <timestamp>2006/12/31</timestamp>
+				<ticker>SAP</ticker>
+				<name>SAP AG (ADR)</name>
+				<mktcap>40986.328</mktcap>
+				<sales>8296.420</sales>
+				<employees>28961</employees>
+			</company>
+			<company>
+        <timestamp>2002/02/02</timestamp>
+				<ticker>CTXS</ticker>
+				<name>Citrix Systems, Inc.</name>
+				<mktcap>3946.485</mktcap>
+				<sales>554.222</sales>
+				<employees>1670</employees>
+			</company>
+			<company>
+        <timestamp>2005/01/01</timestamp>
+				<ticker>KNM</ticker>
+				<name>Konami Corporation (ADR)</name>
+				<mktcap>3710.784</mktcap>
+				<sales>.000</sales>
+				<employees>4313</employees>
+			</company>		</companies>
+	</xml>
+	<script>
+
+
+	//	create data formats
+	var string  = new Active.Formats.String;
+	var number1 = new Active.Formats.Number;
+	var date1   = new Active.Formats.Date;
+
+	//	define formatting rule for text output
+	number1.setTextFormat("#######,##");
+	
+	date1.setTextFormat("dd/mm/yyyy");
+	// date1.setDataFormat("ISO8061");
+
+	
+	
+	
+	
+	//	create ActiveWidgets data model - XML-based table
+	var table = new Active.XML.Table;
+
+	//  get reference to the xml data island node
+	var xml, node = document.getElementById("xmlDataIsland");
+
+	//	IE
+	if (window.ActiveXObject) {
+		xml = node;
+	}
+	//	Mozilla
+	else {
+		xml = document.implementation.createDocument("","", null);
+		xml.appendChild(node.selectSingleNode("*"));
+	}
+
+	//	set column formatting
+	table.setFormats([date1, string, string, number1, number1, number1]);
+	
+	//	provide data XML
+	table.setXML(xml);
+
+	
+
+	
+	
+	//	define column labels
+	var columns = ["Date création","Ticker", "Company Name", "Market Cap.", "$ Sales", "Employees"];
+
+	//	create ActiveWidgets Grid javascript object
+	var obj = new Active.Controls.Grid;
+
+	//	provide column labels
+	obj.setColumnProperty("texts", columns);
+
+	//	provide external model as a grid data source
+	obj.setDataModel(table);
+
+	// obj.sort(0, "ascending"); 
+	obj.setSelectionProperty("index", 0); 
+
+	//	write grid html to the page
+	document.write(obj);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+
+<head>
+	<title>Destroydrop &raquo; Javascripts &raquo; Tree</title>
+
+	<link rel="StyleSheet" href="dtree.css" type="text/css" />
+	<script type="text/javascript" src="dtree.js"></script>
+
+</head>
+
+<body>
+
+<h1><a href="/">Destroydrop</a> &raquo; <a href="/javascripts/">Javascripts</a> &raquo; <a href="/javascripts/tree/">Tree</a></h1>
+
+<h2>Example</h2>
+
+<table width="200px"  border="1" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="95">
+	<p><a href="javascript: d.openAll();"><img src="./img/expand_all.gif" width="18" height="18" border="0" />Ouvrir tout </a></p>	</td>
+    <td width="99"><a href="javascript: d.closeAll();">fermer tout </a><img src="./img/collapse_all.gif" width="18" height="18" /><br>
+    &nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+<div class="dtree">
+
+
+	<script type="text/javascript">
+		<!--
+
+		d = new dTree('d');
+		d.config.useCookies=false;
+		d.icondirectory('./img/');
+
+		d.add(0,-1,'My example tree');
+		d.add(1,0,'Node 1','#');
+		d.add(2,0,'Node 2','#');
+		d.add(3,1,'Node 1.1','#');
+		d.add(4,0,'Node 3','#');
+		d.add(5,3,'Node 1.1.1','#');
+		d.add(6,5,'Node 1.1.1.1','#');
+		d.add(7,0,'Node 4','#');
+		d.add(8,1,'Node 1.2','#');
+		d.add(9,0,'My Pictures','#','Pictures I\'ve taken over the years','','','imgfolder.gif');
+		d.add(10,9,'The trip to Iceland','#','Pictures of Gullfoss and Geysir');
+		d.add(11,9,'Mom\'s birthday','#');
+		d.add(12,0,'Recycle Bin','#','','','trash.gif');
+		document.write(d);
+		d.openTo(6, true);
+
+		//-->
+	</script>
+
+</div>
+
+	</td>
+  </tr>
+</table>
+
+<p><a href="mailto&#58;drop&#64;destroydrop&#46;com">&copy;2002-2003 Geir Landr&ouml;</a></p>
+
+</body>
+
+</html>

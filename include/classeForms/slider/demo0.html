@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Slider Demo (WebFX)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link type="text/css" rel="StyleSheet" href="css/swing/swing2.css" />
+
+<style type="text/css">
+.dynamic-slider-control {
+	background-color:	#FAF0ED;
+}
+</style>
+
+<script type="text/javascript" src="js/range.js"></script>
+<script type="text/javascript" src="js/timer.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script>
+
+</script>
+</head>
+<body>
+
+<table border="0">
+  <tr>
+    <td><div class="slider" id="slider-1" style="width:200px" tabIndex="1">
+	<input class="slider-input" id="slider-input-1"/>
+</div></td>
+    <td><input id="h-value" style="width:30px" readonly="true" onchange="s.setValue(parseInt(this.value))"/>
+</td>
+  </tr>
+</table>
+
+
+
+<table width="200" border="0">
+  <tr>
+    <td><div class="slider" id="slider-2" tabIndex="1" style="width:200px">
+	<input class="slider-input" id="slider-input-2"/>
+</div></td>
+    <td><input id="h2-value" style="width:30px" onchange="s2.setValue(parseInt(this.value))"/>
+</td>
+  </tr>
+</table>
+<script type="text/javascript">
+
+var s = new Slider(document.getElementById("slider-1"), document.getElementById("slider-input-1"));
+s.onchange = function () {
+	document.getElementById("h-value").value = s.getValue();
+};
+s.setMinimum(1);
+s.setMaximum(3);
+s.setValue(1);
+
+var s2 = new Slider(document.getElementById("slider-2"), document.getElementById("slider-input-2"));
+s2.onchange = function () {
+	document.getElementById("h2-value").value = s2.getValue();
+};
+s2.setMinimum(0);
+s2.setMaximum(10);
+s2.setValue(8);
+
+
+window.onresize = function () {
+	s.recalculate();
+	s2.recalculate();
+};
+</script>
+
+
+
+</body>
+</html>

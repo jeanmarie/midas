@@ -1,0 +1,139 @@
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>AJAX exemple de remplissage d'une liste longue</title>
+		<script type='text/javascript'>
+
+
+
+// Example: obj = findObj("image1");
+function MM_findObj(n, d) { //v4.01 
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) { 
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);} 
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n]; 
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); 
+  if(!x && d.getElementById) x=d.getElementById(n); return x; 
+} 
+
+
+		
+function getXmlDoc() {
+	var XmlDoc = null;
+	if(window.ActiveXObject){ // Internet Explorer 
+		try {
+			XmlDoc = new ActiveXObject("Msxml2.XMLHTTP");
+		} 
+		catch (e) {
+			XmlDoc = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	} else if (window.XMLHttpRequest){ // Firefox et autres
+		XmlDoc = new XMLHttpRequest(); 
+		XmlDoc.overrideMimeType('text/xml'); 
+	} else { // XMLHttpRequest non supporté par le navigateur 
+	   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
+	   XmlDoc = false; 
+	} 
+	return XmlDoc;
+}
+
+// Node cleaner
+function cleanNode(c){
+	if(!c.data.replace(/\s/g,'')) {
+		c.parentNode.removeChild(c);
+	}
+}
+
+function clean(d){
+	var bal=d.getElementsByTagName('*');
+	for(i=0;i<bal.length;i++){
+		a=bal[i].previousSibling;
+		if(a && a.nodeType==3)
+			cleanNode(a);
+		b=bal[i].nextSibling;
+		if(b && b.nodeType==3)
+			cleanNode(b);
+	}
+	return d;
+} 
+
+function gophp(param){
+	var objgif = MM_findObj('gifloader');
+	objgif.style.visibility="visible";
+	var XmlDoc = getXmlDoc();
+	// On défini ce qu'on va faire quand on aura la réponse
+	XmlDoc.onreadystatechange = function() {
+		// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+		if(XmlDoc.readyState == 4 && XmlDoc.status == 200){
+			reponse = clean(XmlDoc.responseXML.documentElement);
+			
+			//------------------------------------------------------------------
+			
+			var valeur = reponse.getElementsByTagName("option")[1].firstChild.nodeValue;
+			MM_findObj('textfield2').value=valeur;
+			
+			var ol = MM_findObj('select')
+			x=reponse.getElementsByTagName('option');
+			ol.length = x.length; 
+			cpt_ok    = 0;
+			for (i=0;i<x.length;i++) {
+				if (x[i].childNodes[0]) {
+					// recuperation de l'attribut qui contient "value" de l'option
+					ol.options[cpt_ok].value = x[i].attributes.getNamedItem("value").nodeValue;
+					// recuperation de la valeur qui contient "text" de l'option
+					ol.options[cpt_ok].text  = x[i].childNodes[0].nodeValue;
+					ol.options[cpt_ok].selected  = false;
+					cpt_ok++;
+				}
+			}			
+			ol.length = cpt_ok; 
+			objgif.style.visibility="hidden";		
+			//------------------------------------------------------------------
+		}
+	}
+	XmlDoc.open("POST","ajax_xml_options.php",true);
+	XmlDoc.setRequestHeader("Content-type", "application/x-www-form-urlencoded;"); 
+	XmlDoc.send('PARAM='+param+'&CHAMP1='+escape(MM_findObj('textfield').value) );
+				
+}
+
+
+		</script>
+	    <style type="text/css">
+<!--
+.Style1 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: xx-small;
+}
+-->
+        </style>
+</head>
+	<body>
+	    <form name="form1" method="post" action="">
+	      <label>
+	      <input type="text" name="textfield">
+          <img src="ajax-loader_16.gif" name="gifloader" width="16" height="16" id="gifloader" style="visibility:hidden"><br>
+          <input name="textfield2" type="text" size="100">
+          <br>
+          <select name="select" size="5" style="width:200px" >
+            <option value="Un">1</option>
+          </select>
+          <br>
+          <input type='button' value='appel au fichier XML (donn&eacute;es statiques)' onclick='gophp(0)' />
+	      </label>
+            <input name="button" type='button' onclick='gophp(1)' value='appel au fichier XML (donn&eacute;essdynamiques)' />
+	    </form>
+		<script>
+			gophp(1);
+		</script>
+        <p><a href="xml_static_options.php">lien vers XML </a></p>
+        <p><a href=".">lien vers repertoire </a></p>
+        <p>pour remplir la liste le fichier XML doit &ecirc;tre au format </p>
+        <p class="Style1">&lt;root&gt;</p>
+        <blockquote>
+          <p class="Style1">&lt;option value=&quot;1&quot;&gt;Un&lt;/option&gt;</p>
+          <p class="Style1">...</p>
+        </blockquote>
+        <p class="Style1">&lt;/root&gt; </p>
+        <p class="Style1">&nbsp;</p>
+	</body>
+</html>

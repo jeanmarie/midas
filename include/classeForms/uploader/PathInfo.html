@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+</head>
+<script type="text/javascript" src="../Communs.js"></script>	
+<script>
+/* 
+	var this_url = new PathInfo();
+	document.write('<br><b>dom =</b> '+this_url.dom);
+	document.write('<br><b>basename</b> = '+this_url.basename);
+	document.write('<br><b>extension</b> = '+this_url.extension);
+	document.write('<br><b>args</b> = '+this_url.args);
+	document.write('<br><b>page</b> = '+this_url.page);
+	document.write('<br><b>dir</b> = '+this_url.dir);	
+
+	pour la page http://www.oberlechner.net/dir/test.html?toto=1
+	on obtient :
+		.dom       = www.oberlechner.net
+		.basename  = test.html
+		.extension = html
+		.args      = toto=1
+		.page      = test
+		.dir       = http://www.oberlechner.net/dir/
+	
+*/
+
+
+var this_url = new PathInfo();
+document.write('<br><b>dom =</b> '+this_url.dom);
+document.write('<br><b>basename</b> = '+this_url.basename);
+document.write('<br><b>extension</b> = '+this_url.extension);
+document.write('<br><b>args</b> = '+this_url.args);
+document.write('<br><b>page</b> = '+this_url.page);
+document.write('<br><b>dir</b> = '+this_url.dir);
+
+var this_url = new PathInfo("http://www.koko.com/toto'ppp'.doc");
+document.write('<br><b>dom =</b> '+this_url.dom);
+document.write('<br><b>basename</b> = '+this_url.basename);
+document.write('<br><b>extension</b> = '+this_url.extension);
+document.write('<br><b>args</b> = '+this_url.args);
+document.write('<br><b>page</b> = '+this_url.page);
+document.write('<br><b>dir</b> = '+this_url.dir);
+
+
+
+</script>  
+<body>
+</body>
+</html>

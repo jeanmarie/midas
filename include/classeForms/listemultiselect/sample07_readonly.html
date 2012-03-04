@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Sample 01 - comportement normal</title>
+</head>
+
+<body>
+<script>
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+</script>
+<SCRIPT LANGUAGE="JavaScript" SRC="multiselect.js"></SCRIPT>
+
+<form id="f" name="form1" method="post" action="">
+<br>
+  <table border="0" cellspacing="1" cellpadding="0">
+    <tr>
+      <td width="*"><select  name="select" size="10" multiple="multiple" id="dmc_list" onChange="if(b.MultiSelect_onChange()) b.MultiSelect_SaveChange();">
+        <option value="1">08:00 - 09:00</option>
+        <option value="2" selected>09:00 - 10:00</option>
+        <option value="3" selected>10:00 - 11:00</option>
+        <option value="4">11:00 - 12:00</option>
+        <option value="5">12:00 - 13:00</option>
+        <option value="6">13:00 - 14:00</option>
+        <option value="7">14:00 - 15:00</option>
+        <option value="8">15:00 - 16:00</option>
+        <option value="9">16:00 - 17:00</option>
+        <option value="10">17:00 - 18:00</option>
+      </select></td>
+      <td width="*" align="left" valign="top"><a href="javascript:b.MultiSelect_InitAll(true)" border="0"><img src="img/list_selectall.gif" alt="Tout s&eacute;lectionner" width="16" height="16" border="0"></a><br>
+          <a href="javascript:b.MultiSelect_Reset()" border="0"><img src="img/list_reset.gif" alt="R&eacute;tabir la s&eacute;lection initiale" width="16" height="16" border="0"></a><br>
+      <a href="javascript:b.MultiSelect_InitAll(false)" border="0"><img src="img/list_unselectall.gif" alt="Effacer la s&eacute;lection" width="16" height="16" border="0"></a><br>
+      <br></td>
+    </tr>
+  </table>
+  <br>
+  <input type="text" name="dmc"/>
+  
+<script>
+
+	</script>
+<br>
+<script>
+	b = new MultiSelect('dmc_list','dmc');
+	b.MultiSelect_ModeChange('readonly');
+	b.MultiSelect_ModeBlock(true,'la plage horaire doit etre continue');
+	
+</script>
+<input name="textfield" type="text" value="dummy value">
+  
+  
+  <p>
+    <input type="button" name="Submit" value="R&eacute;Initialiser le champ" onClick="b.MultiSelect_Reset()" />
+    <input type="button" name="Submit2" value="Tout Selectionner" onClick="b.MultiSelect_InitAll(true)">
+    <input type="button" name="Submit22" value="Tout Annuler"  onClick="b.MultiSelect_InitAll()">
+  </p>
+</form> 
+</body>
+</html>

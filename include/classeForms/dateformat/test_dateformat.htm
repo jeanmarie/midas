@@ -1,0 +1,390 @@
+<html>
+<head>
+<title>Manipulation des champs dates et heure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<!---------------------------- JAVASCRIPT SYSTEMATIQUE DE LA CLASSE "ClasseForms" ------------->
+<script language="JavaScript" type="text/javascript" src="../Communs.js"></script>
+
+
+<!---------------------------- FIN DU CODE SYSTEMATIQUE STATIQUE ---------------------------->
+
+
+<script language="JavaScript" type="text/JavaScript">
+<!-- // PERMET DE CHANGER L'ETAT DU BOUTON QUITTER EN ANNULER ET INVERSEMENT 
+var EtatInitialBtnQuitter = true; 
+function PasserEtatAnnuler() { 
+	EtatInitialBtnQuitter = false; 
+	MM_setTextOfTextfield('ClassFormAnnulerQuitter','','Rétablir'); 
+} 
+function PasserEtatQuitter() {  
+	EtatInitialBtnQuitter = true; 
+	MM_setTextOfTextfield('ClassFormAnnulerQuitter','','Quitter'); 
+} 
+
+// ATTENTION : CETTE FONCTION RETABLIT DANS LEUR ETAT D'ORIGINE TOUS LES CONTROLES
+function Resetousubmit() { 
+   if (EtatInitialBtnQuitter) { 
+       MM_setTextOfTextfield('classformulaireexitcode','','QUITTER'); 
+       document.forms.classformulaire.submit(); 
+       return true; 
+   } else { 
+       <!-- LE CODE CI DESSOUS EST EXECUTE QUAND ON CLIQUE SUR 'RETABLIR' -->
+
+		// RESET HTML DES CHAMPS
+       document.forms.classformulaire.reset(); 
+       PasserEtatQuitter(); 
+   } 
+} 
+-->
+</script> 
+
+<!---------------------------- FIN DU CODE SYSTEMATIQUE DYNAMIQUE ---------------------------->
+
+<!------------------------------ CODE JAVASCRIPT necessaire pour les controles de formulaire ------------------------->
+	<script type="text/javascript"> 
+//	appel par la methode onSubmit() d'un formulaire avec comme parametre :  
+//		YY_checkform('nomformulaire','nomchamp1','attribut1-1','attribut1-2','Message d erreur 1',  
+//									 'nomchamp2','attribut2-1','attribut2-1','Message d erreur 2');return document.MM_returnValue">  
+function YY_checkform() {   
+  var a=YY_checkform.arguments, oo=true,v='',s='',err=false,r,o,at,o1,t,i,j,ma,rx,cd,cm,cy,dte,at;   
+  var premier=-1;   
+  for (i=1; i<a.length;i=i+4){   
+	// l'attribut n°=1 doit commencer par un # sinon il n'est pas obligatoire  
+    if (a[i+1].charAt(0)=='#'){   
+		r=true;   
+		a[i+1]=a[i+1].substring(1);  
+	} else {  
+	 	r=false  
+	}   
+    o=MM_findObj(a[i].replace(/\[\d+\]/ig,""));   
+    o1=MM_findObj(a[i+1].replace(/\[\d+\]/ig,""));   
+    // si le champ est desactive alors il ne peut pas etre obligatoire   
+	if (o.disabled) { r=false; }  
+    v=o.value;  
+	// t = attribut n°=2  
+	t=a[i+2];   
+	// dans le cas des chams texte  
+    if (o.type=='text'||o.type=='password'||o.type=='hidden'){   
+      if (r&&v.length==0) {err=true}   
+      if (v.length>0)   
+	      if (t==1){ //fromto   
+	        ma=a[i+1].split('_');  
+			if(isNaN(v)||v<ma[0]/1||v > ma[1]/1){err=true}   
+      	  } else if (t==2){   
+	        rx=new RegExp("^[\\w\.=-]+@[\\w\\.-]+\\.[a-zA-Z]{2,4}$");  
+			if(!rx.test(v)) err=true;   
+		  } else if (t==3){ // date   
+	        ma=a[i+1].split("#");at=v.match(ma[0]);   
+	        if(at){   
+	          cd=(at[ma[1]])?at[ma[1]]:1;cm=at[ma[2]]-1;cy=at[ma[3]];   
+	          dte=new Date(cy,cm,cd);   
+	          if(dte.getFullYear()!=cy||dte.getDate()!=cd||dte.getMonth()!=cm) {err=true};   
+	        } else {  
+			  err=true  
+			}   
+		} else if (t==4){ // time   
+	        ma=a[i+1].split("#");at=v.match(ma[0]);  
+			if(!at){err=true}   
+		} else if (t==5){   
+            if(o1.length) o1=o1[a[i+1].replace(/(.*\[)|(\].*)/ig,"")];   
+			if(!o1.checked){err=true}   
+		} else if (t==6){ // the same   
+            if(v!=MM_findObj(a[i+1]).value){err=true}   
+		}   
+	// dans les autres cas  
+	// CAS DES BOUTONS RADIO	  
+    } else if (!o.type&&o.length>0&&o[0].type=='radio'){   
+		at = a[i].match(/(.*)\[(\d+)\].*/i);   
+		o2=(o.length>1)?o[at[2]]:o;   
+		if (t==1&&o2&&o2.checked&&o1&&o1.value.length/1==0){err=true}   
+		if (t==2){   
+	        oo=false;   
+			for(j=0;j<o.length;j++){oo=oo||o[j].checked}   
+		        if(!oo){s+='* '+a[i+3]+'\n'}   
+			}   
+	    } else if (o.type=='checkbox'){   
+			if((t==1&&o.checked==false)||(t==2&&o.checked&&o1&&o1.value.length/1==0)){err=true}   
+		// dans le cas des listes			  
+		} else if (o.type=='select-one'||o.type=='select-multiple'){  
+			if(o.size>1) {  
+				if(r&&t==1) {  
+					cptselectionne = 0;  
+					for (var idx=0;idx<o.options.length;idx++) {  
+						if(o.options[idx].selected) { cptselectionne++; }   
+					}  
+					err= (cptselectionne == 0);  
+				}  
+			} else {  
+				// dans le cas d'une liste a une seule ligne, la premiere est un libellé  
+				if(r&&t==1&&o.selectedIndex/1==0){err=true}   
+			}  
+		} else if (o.type=='textarea'){   
+			if(v.length<a[i+1]){err=true}   
+	    } else if (o.type=='file'){   
+			if(v.length<1){err=true}   
+	    }   
+	    if (err){s+='* '+a[i+3]+'\n'; err=false;   
+		if(premier==-1) premier=o; }   
+	}   
+	if (s!=''){  
+    	alert('LES INFORMATIONS SUIVANTES DOIVENT ETRE MODIFIEES :\n_____________________________________________________________\n\n'+s);   
+	    if (premier.type!='hidden') premier.focus();   
+	}   
+	document.MM_returnValue = (s=='');      
+}   
+	</script>
+
+<!------------------------------ CODE JAVASCRIPT EXTERNE necessaire pour les controles de date ------------------------->
+	<script type="text/javascript" src="DateFormat.js"></script>
+
+  <!-- importation necessaire a l'emploi de Calendar--> 
+
+<!---------------------------- DEFINITION DES STYLES DU CALENDRIER ------------------>
+<link type="text/css" rel="StyleSheet" href="../calendar/calendar.css" /> 
+<!-- Les styles suivant proviennent de la palette selectionnee et viennent modifier les styles ci-dessus -->
+
+<style type="text/css">
+<!--
+.calendar         { background: #F9EBE6; } 
+.calendar table   { background: #F9EBE6; } 
+.calendar .button { background: #E9BDAD; } 
+.calendar .nav    { background: #E9BDAD; } 
+.calendar thead .title   { background: #9C0000; } 
+.calendar thead .name    { background: #F5DED6; } 
+.calendar thead .weekend { color: #9C0000; } 
+.calendar thead .hilite  { background-color: #F5DED6; }
+.calendar thead .active  { background-color: #F9EBE6; }
+.calendar table .wn      { background: #F5DED6; }
+.calendar tbody .rowhilite td    { background: #F5DED6; }
+.calendar tbody .rowhilite td.wn { background: #E9BDAD; }
+.calendar tbody td.hilite { background: #E9BDAD; }
+.calendar tbody td.active { background: #E9BDAD; }
+.calendar tbody td.selected { background: #F5DED6; }
+.calendar tbody td.weekend  { color: #9C0000; }
+.calendar tbody td.today    { color: #9C0000; }
+.calendar tbody .disabled   { color: #9C0000; } 
+.calendar tfoot .ttip       { background: #E9BDAD; }
+.calendar tfoot .hilite     { background: #9C0000; }
+.combo             { background: #E9BDAD; }
+.combo .active     { background: #F5DED6; }
+.combo .hilite     { background: #F9EBE6; }
+.calendar td.time  { background-color: #F5DED6; }
+.calendar td.time .ampm { border: 1px solid #9C0000; }
+.calendar td.time span.hilite { background-color: #9C0000; }
+-->
+</style>
+  <script type="text/javascript" src="../calendar/calendar.js"></script> 
+  <script type="text/javascript" src="../calendar/calendar-fr.js"></script> 
+  <script type="text/javascript" src="../calendar/calendar-setup.js"></script> 
+
+<!------------------------------ BALISE DE POSITIONNEMENT DE L'AIDE ------------------------->
+<DIV id=docTipsLayer style="Z-INDEX: 1000; LEFT: 0px; VISIBILITY: hidden; WIDTH: 10px; POSITION: absolute; TOP: 0px"></DIV> 
+
+
+<!------------------------------ CODE JAVASCRIPT EXTERNE necessaire pour les bulles d'aide ------------------------->
+<script type="text/javascript" src="../tooltips/ToolTips.js"></script>
+
+<SCRIPT language=JavaScript> 
+<!--- 
+var docTips = new TipObj('docTips'); 
+with (docTips) 
+{ 
+	tips.hlpDATE_1 = new Array('page.scrollX() + page.winW()', -20, 120,'Saisir une date ou la sélectionner dans au calendrier');  
+	tips.hlpTIMESTAMP = new Array('page.scrollX() + page.winW()', -20, 120,'sélectionner une date dans le calendrier');  
+
+	template = '<table bgcolor="#9C0000" cellpadding="1" cellspacing="0" width="%2%" border="0">' + 
+	'<tr><td><table bgcolor="#F9EBE6" cellpadding="3" cellspacing="0" width="100%" border="0">' + 
+	'<tr><td class="tipClass">%3%</td></tr></table></td></tr></table>'; 
+} 
+//--> 
+</SCRIPT> 
+<STYLE type=text/css>.tipClass { 
+	FONT: 10px Vernada, Arial, Helvetica; COLOR: #9C0000 
+} 
+</STYLE> 
+
+<!---------------------------- FIN DU CODE JAVASCRIPT OPTIONNEL -------------------->
+
+
+
+
+
+
+<!---------------------------- DEBUT DES STYLES CSS DU FORMULAIRE ------------------>
+
+<style type="text/css">
+<!--
+.classeformschampreadonly { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	background-color: #FFFF; 
+} 
+.classeformschampnormal { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	background-color: #F9EBE6; 
+} 
+.classeformschampobligatoire { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	background-color: #F5DED6; 
+} 
+.classeformschamperreur { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	background-color: #E9BDAD; 
+} 
+.classeformsliste{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	background-color: #E9BDAD; 
+ font-weight: bold; 
+} 
+.classeformslabel { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+} 
+.classeformslabelerreur  { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	color: #9C0000; 
+	text-decoration: underline; 
+} 
+.classeformsbouton { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	cursor:hand; 
+	font-weight: bold; 
+} 
+.classeformsminibouton { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 9px; 
+	cursor:hand; 
+} 
+.classeformsbtradiovertical { 
+	height: auto; 
+	width: auto; 
+	border-top: none; 
+	border-right: none; 
+	border-bottom: none; 
+	border-left: outset; 
+} 
+} 
+-->
+</style>
+
+<!---------------------------- DEBUT DE DEFINITION DU FORMULAIRE ------------------->
+
+<form name="classformulaire" method="POST" action=""
+      onSubmit="document.MM_returnValue=true;tmt_disableField('ClassFormValider',1);MM_setTextOfTextfield('classformulaireexitcode','','VALIDER');YY_checkform('classformulaire','DATE_1','^\([0-9][0-9]\)\/\([0-9][0-9]\)\/\([0-9]{4}\)$#1#2#3','3','( Date manuelle ou avec calendrier (attrib=DP) ) date au format JJ/MM/AAAA','DATE_2','^\([0-9][0-9]\)\/\([0-9][0-9]\)\/\([0-9]{4}\)$#1#2#3','3','( Date sans calendrier (attrib=D) ) date au format JJ/MM/AAAA');return document.MM_returnValue" >
+
+
+	<!--- CHAMP CACHE DE MEMORISATION DE L'ACTION EN COURS : A0,A1 pour un ajout M0,M1 pour une modification ------>
+	<input name="classformulairehidden" type="hidden" value="A0">
+
+	<!--- CHAMP CACHE DE MEMORISATION DE LA TOUCHE DE SORTIE Submit() ------>
+	<input name="classformulaireexitcode" type="hidden" value="">
+	<!--- Si 1er appel a la page alors ="" (VIDE),
+	      si réentrance de la page alors =QUITTER =VALIDER ou =SUBMIT_NOMDUCHAMPDESORTIE avec l'attribut ="S" --->
+
+<!---------------------------- DEBUT DE DEFINITION AUTOMATIQUE DES CHAMPS DU FORMULAIRE -------->
+
+<table border="0" cellspacing="0">
+    <tr>
+	<td nowrap width="300px" valign="top"><p><span class="classeformslabel">Date manuelle ou avec calendrier (attrib=DP)</span></p></td>
+	<td width="*"><p>
+
+	<!--- CHAMP TEXTE (DATE_1) : objet n°0 type=0 attrib="DP" mask="" ---------------------------->
+
+	<input type="text" id="DATE_1" name="DATE_1" value="01/02/2005"  size='12' maxlength='10' class="classeformschampnormal" 
+	    onFocus="tmt_disableField('ClassFormValider',0);PasserEtatAnnuler();" 
+	    onKeyUp="DateFormat(this,this.value,event,false,'3');" 
+	    onKeyPress="return handleEnter(this,event);" 
+	    onBlur="alltrim('DATE_1');DateFormat(this,this.value,event,true,'3');" 
+	    onMouseOver="docTips.show('hlpDATE_1');" 
+	    onMouseOut="docTips.hide();" >&nbsp
+
+	<!---- DATE PICKER : SELECTIONNE UNE DATE DANS UN CALENDRIER ---->
+	<input type="button" id="DATE_1_BTN" class="classeformslabel" value="..."  
+	    onFocus="tmt_disableField('ClassFormValider',0);PasserEtatAnnuler();return false;" 
+	    onMouseOver="docTips.show('hlpDATE_1');" 
+	    onMouseOut="docTips.hide();" >
+	<script type="text/javascript"> 
+	Calendar.setup({ 
+		inputField     :    "DATE_1",      // id of the input field 
+		ifFormat       :    "%d/%m/%Y",       // format of the input field 
+		showsTime      :    true,            // will display a time selector 
+		button         :    "DATE_1_BTN"   // trigger for the calendar (button ID) 
+	}); 
+	</script> 
+	</p>
+	</td>
+</tr>
+
+    <tr>
+	<td nowrap width="300px" valign="top"><p><span class="classeformslabel">Date sans calendrier (attrib=D)</span></p></td>
+	<td width="*"><p>
+
+	<!--- CHAMP TEXTE (DATE_2) : objet n°1 type=0 attrib="D" mask="" ---------------------------->
+
+	<input type="text" id="DATE_2" name="DATE_2" size='12' maxlength='10' class="classeformschampnormal" 
+	    onFocus="tmt_disableField('ClassFormValider',0);PasserEtatAnnuler();" 
+	    onKeyUp="DateFormat(this,this.value,event,false,'3');" 
+	    onKeyPress="return handleEnter(this,event);" 
+	    onBlur="alltrim('DATE_2');DateFormat(this,this.value,event,true,'3');" >&nbsp
+	</p>
+	</td>
+</tr>
+
+    <tr>
+	<td nowrap width="300px" valign="top"><p><span class="classeformslabel">Time stamp (attrib=T)</span></p></td>
+	<td width="*"><p>
+
+	<!--- CHAMP TEXTE (TIMESTAMP) : objet n°2 type=0 attrib="T" mask="" ---------------------------->
+
+	<input type="text" id="TIMESTAMP" name="TIMESTAMP" value="13/05/2005 20:49"  size='19' maxlength='18' readonly=true  class="classeformschampnormal" 
+	    onFocus="tmt_disableField('ClassFormValider',0);PasserEtatAnnuler();" 
+	    onKeyPress="return handleEnter(this,event);" 
+	    onBlur="alltrim('TIMESTAMP');" 
+	    onMouseOver="docTips.show('hlpTIMESTAMP');" 
+	    onMouseOut="docTips.hide();" >&nbsp
+
+	<!---- DATE PICKER : SELECTIONNE UNE DATE DANS UN CALENDRIER ---->
+	<input type="button" id="TIMESTAMP_BTN" class="classeformslabel" value="..."  
+	    onFocus="tmt_disableField('ClassFormValider',0);PasserEtatAnnuler();return false;" 
+	    onMouseOver="docTips.show('hlpTIMESTAMP');" 
+	    onMouseOut="docTips.hide();" >
+	<script type="text/javascript"> 
+	Calendar.setup({ 
+		inputField     :    "TIMESTAMP",      // id of the input field 
+		ifFormat       :    "%d/%m/%Y %H:%M",       // format of the input field 
+		showsTime      :    true,            // will display a time selector 
+		button         :    "TIMESTAMP_BTN"   // trigger for the calendar (button ID) 
+	}); 
+	</script> 
+	</p>
+	</td>
+</tr>
+
+</table>
+<table border="0" cellspacing="0"><tr>
+<td width="300px" nowrap>&nbsp;</td><td nowrap>&nbsp;<br>
+<input name="ClassFormValider" type="submit" class="classeformsbouton" id="ClassFormValider" style="width:100px" value="Valider" disabled="true" >
+<input name="ClassFormAnnulerQuitter" type="button" class="classeformsbouton" id="ClassFormAnnulerQuitter" onClick="tmt_disableField('ClassFormValider',1);Resetousubmit();"  style="width:100px" value="Quitter" >
+</td></tr></table>
+<!---------------------------- FIN DE DEFINITION AUTOMATIQUE DES CHAMPS DU FORMULAIRE ---------->
+
+
+
+<p>
+  Analyse des caract&egrave;res frapp&eacute;s analys&eacute;s par la fonction DateFormat() : 
+  <input name="view" type="text" disabled="true" id="view" onBlur="MM_setTextOfTextfield('view','','OK')">
+</p>
+</table></form></body>
+</html>
+
+<script language='javascript'>postamble();</script>
+

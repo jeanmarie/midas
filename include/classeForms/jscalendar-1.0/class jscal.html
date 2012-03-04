@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- $Id: index.html,v 1.15 2005/03/05 14:38:10 mishoo Exp $ -->
+
+<head>
+<meta http-equiv="content-type" content="text/xml; charset=utf-8" />
+<title>The Coolest DHTML Calendar - Online Demo</title>
+<link rel="stylesheet" type="text/css" media="all" href="skins/aqua/theme.css" title="Aqua" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-blue.css" title="winter" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-blue2.css" title="blue" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-brown.css" title="summer" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-green.css" title="green" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-1.css" title="win2k-1" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-2.css" title="win2k-2" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-cold-2.css" title="win2k-cold-2" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-system.css" title="system" />
+
+<!-- import the calendar script -->
+<script type="text/javascript" src="calendar.js"></script>
+
+<!-- import the language module -->
+<script type="text/javascript" src="lang/calendar-fr.js"></script>
+
+<!-- other languages might be available in the lang directory; please check
+your distribution archive. -->
+
+<!-- helper script that uses the calendar -->
+<script type="text/javascript">
+
+
+
+
+
+// This function gets called when the end-user clicks on some date.
+function selected(cal, date) {
+  cal.sel.value = date; // just update the date in the input field.
+  cal.callCloseHandler();
+}
+
+// And this gets called when the end-user clicks on the _selected_ date,
+// or clicks on the "Close" button.  It just hides the calendar without
+// destroying it.
+function closeHandler(cal) {
+  cal.hide();                        // hide the calendar
+//  cal.destroy();
+ //  _dynarch_popupCalendar = null;
+}
+
+// This function shows the calendar under the element having the given id.
+// It takes care of catching "mousedown" signals on document and hiding the
+// calendar if the click was outside.
+function showCalendar(id, format, showsTime, showsOtherMonths) {
+  var el = document.getElementById(id);
+  if (_dynarch_popupCalendar != null) {
+    // we already have some calendar created
+    _dynarch_popupCalendar.hide();                 // so we hide it first.
+  } else {
+    // first-time call, create the calendar.
+    var cal = new Calendar(1, null, selected, closeHandler);
+    // uncomment the following line to hide the week numbers
+    // cal.weekNumbers = false;
+    if (typeof showsTime == "string") {
+      cal.showsTime = true;
+      cal.time24 = (showsTime == "24");
+    }
+    if (showsOtherMonths) {
+      cal.showsOtherMonths = true;
+    }
+    _dynarch_popupCalendar = cal;                  // remember it in the global var
+    cal.setRange(1900, 2070);        // min/max year allowed.
+    cal.create();
+  }
+  _dynarch_popupCalendar.setDateFormat(format);    // set the specified date format
+  _dynarch_popupCalendar.parseDate(el.value);      // try to parse the text in field
+  _dynarch_popupCalendar.sel = el;                 // inform it what input field we use
+
+  // the reference element that we pass to showAtElement is the button that
+  // triggers the calendar.  In this example we align the calendar bottom-right
+  // to the button.
+  _dynarch_popupCalendar.showAtElement(el, "B1");        // show the calendar
+
+  return false;
+}
+
+
+</script>
+
+
+
+</head>
+<body>
+
+<h2><a href="http://www.dynarch.com/projects/calendar/"
+title="Visit the project website">jscalendar</a>-1.0
+"It is happening again"</h2>
+
+<p>
+
+<form action="#">
+
+
+<b>Date #2:</b> <input type="text" name="date2" id="sel2" size="30">
+
+
+
+<a href='#' id='kiki' onClick="return showCalendar('sel2', '%a, %b %e, %Y [%I:%M %p]', false,true);"> tata </a>
+<a href='#' id='kiki' onClick="return showCalendar('sel2', '%a, %b %e, %Y [%I:%M %p]', '24',true);"> toto </a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href='#' onClick="if (1==2) return showCalendar('sel2', '%a, %b %e, %Y [%I:%M %p]', '24',true);"> rien </a>
+
+</form>
+</body></html>

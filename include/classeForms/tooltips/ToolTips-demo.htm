@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0051)http://www.twinhelix.com/dhtml/scripts/tipster.html -->
+<HTML><HEAD><TITLE>Tooltips Demonstration</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY><!-- Each tip object writes its tips to a layer named the same as itself plus 'Layer'. --><!-- So these divs must be included in any page using the script, above triggering links. -->
+
+
+<SCRIPT language=JavaScript src="ToolTips.js"></SCRIPT>
+<DIV id=docTipsLayer style="Z-INDEX: 1000; LEFT: 0px; VISIBILITY: hidden; WIDTH: 10px; POSITION: absolute; TOP: 0px"></DIV>
+<SCRIPT language=JavaScript>
+<!---
+var docTips = new TipObj('docTips');
+with (docTips)
+{
+	tips.formulae = new Array('page.scrollX() + page.winW()', 0, 120,'This tip is always on the right edge dsf sdfsdf sdf sdfs dsdf sdf...'); 
+	tips.formul5 = new Array('page.scrollX() + page.winW()', 0, 120,'This tip is always o<br>n the right edge<br> dsf sdfsdf sdf sdfs dsdf sdf sdsdsdsdsdsd...' );
+	tips.formulae3 = new Array('page.scrollX() + page.winW()', 0, 120,'------------- This tip is always o<br>n the right edge<br> dsf sdfsdf sdf sdfs dsdf sdf sdsdsdsdsdsd...' );
+	tips.mysite = new Array('page.scrollX() + page.winW()', 0, 150, 'Visit this for updates, help and more info');
+
+	template = '<table bgcolor="#9C0000" cellpadding="1" cellspacing="0" width="%2%" border="0">' +
+		'<tr><td><table bgcolor="#F0D2C8" cellpadding="3" cellspacing="0" width="100%" border="0">' +
+		'<tr><td class="tipClass">%3%</td></tr></table></td></tr></table>';
+} --></SCRIPT>
+
+<STYLE type=text/css>.tipClass {
+	FONT: 10px Vernada, Arial, Helvetica; COLOR: black
+}
+</STYLE>
+
+<br>
+
+    <form name="form1" method="post" action="" >
+      <p>
+	    <select name="select" onmouseover="docTips.show('formul5')" onmouseout="docTips.hide()">
+          <option>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</option>
+        </select>
+</p>
+      
+      <A onmouseover="docTips.show('formulae')" onmouseout=docTips.hide()  href="javascript:void(0)">formulae</A>
+      <p>&nbsp;      </p>
+      <p>
+        <input name="" type="text" value="dsfqsdfqsdf" onmouseover="docTips.show('formulae3')" onmouseout=docTips.hide()>
+</p>
+      <p>
+        <input name="Input" type="text" value="dsfqsdfqsdf" onmouseover="docTips.show('mysite')" onmouseout=docTips.hide()>
+</p>
+    </form>  
+
+</BODY></HTML>

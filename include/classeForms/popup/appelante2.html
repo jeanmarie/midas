@@ -1,0 +1,66 @@
+<HTML><HEAD><TITLE>POPUP - Popup Communiquant defentre Mere-Fille
+</TITLE>
+<SCRIPT type="text/JavaScript">
+//D'autres scripts sur http://www.toutjavascript.com
+//Si vous utilisez ce script, merci de m'avertir !  < webmaster@toutjavascript.com >
+
+document.onmousemove=getMousePos;
+
+function OuvrirPopup(page,nom,option) {
+  document.onmousemove=getMousePos;
+  window.open(page,nom,'left='+posX+',top=200,'+posY+','+option);
+}
+function OuvrirPopup2(page,nom,option) {
+  document.onmousemove=getMousePos;
+  window.open(page,nom,'left='+posX+',top=200,'+posY+','+option);
+}
+
+function getMousePos(e) {
+  if (document.all) {
+  posX=event.x+document.body.scrollLeft; //modifs CL 09/2001 - IE : regrouper l'évènement
+  posY=event.y+document.body.scrollTop;
+  }
+  else {
+  posX=e.pageX; //modifs CL 09/2001 - NS6 : celui-ci ne supporte pas e.x et e.y
+  posY=e.pageY; 
+  }
+}
+
+
+</SCRIPT></HEAD>
+<BODY bgcolor="white">
+<FONT face="arial" color="navy" size="2">
+
+<B><BIG><CENTER>Communiquer avec la fenêtre appelante</CENTER></BIG></B><BR>
+Depuis le popup il est possible d'atteindre l'objet <SPAN class=code>window</SPAN> de la fenêtre appelante grâce à <SPAN class=code>window.opener</SPAN>. On peut ainsi modifier le contenu de la fenêtre appelante ou récupérer des informations du popup pour les replacer dans un formulaire de la fenêtre appelante.<BR>
+Cet exemple permet de placer dans le champ <SPAN class="code">choix</SPAN> du formulaire <SPAN class="code">origine</SPAN>
+
+<BR><BR><BR>
+
+<FORM action="../../AfficherResultats.php" method="post" name='origine'>
+	<p>Votre choix 
+	  <INPUT type="text" name="choix" disabled>
+	  <INPUT type="button" value="..." onClick="OuvrirPopup('appelee.html','popupchoix','width=300,height=400,menubar=no,status=no')">
+</p>
+	<p>
+	  <input name="toto" type="text" id="toto" value="toto"> 
+	</p>
+	<p>
+	  <input name="hiddenField" type="hidden" value="tata">  
+      </p>
+	<p>
+	  <input type="submit" name="Submit" value="Submit">
+	  <BR>
+        </p>
+</FORM>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<CENTER><A href="http://www.toutjavascript.com"><FONT size="1" face="arial" color="#CCCCFF">Tout JavaScript.com</FONT></A></CENTER>
+</FONT>
+</BODY></HTML>
+<!-- Script développé par Olivier Hondermarck  webmaster@toutjavascript.com -->
+<!-- D'autres scripts et des conseils sur http://www.toutjavascript.com -->

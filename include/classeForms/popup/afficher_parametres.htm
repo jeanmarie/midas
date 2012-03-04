@@ -1,0 +1,122 @@
+<HTML><HEAD><TITLE>Tout JavaScript.com - Popup Communiquant</TITLE>
+<SCRIPT type="text/JavaScript">
+//D'autres scripts sur http://www.toutjavascript.com
+//Si vous utilisez ce script, merci de m'avertir !  < webmaster@toutjavascript.com >
+function OuvrirPopup(page,nom,option) {
+  window.open(page,nom,option);
+}
+function called() {
+OuvrirPopup('appelee.html','popupchoix','width=300,height=400,menubar=no,status=no');
+location.href='appelee.html';
+}
+
+function ArgumentURL() {
+	this.getArgument = _getArg;
+	this.setArgument = _setArg;
+	this.removeArgument = _removeArg;
+	this.toString    = _toString;	//Allows the object to be printed
+									//no need to write toString()
+	this.arguments   = new Array();
+
+	// Initiation
+	var separator = "&";
+	var equalsign = "=";
+	
+	var str = window.location.search.replace(/%20/g, " ");
+	var index = str.indexOf("?");
+	var sInfo;
+	var infoArray = new Array();
+
+	var tmp;
+	
+	if (index != -1) {
+		sInfo = str.substring(index+1,str.length);
+		infoArray = sInfo.split(separator);
+	}
+
+	for (var i=0; i<infoArray.length; i++) {
+		tmp = infoArray[i].split(equalsign);
+		if (tmp[0] != "") {
+			var t = tmp[0];
+			this.arguments[tmp[0]] = new Object();
+			this.arguments[tmp[0]].value = tmp[1];
+			this.arguments[tmp[0]].name = tmp[0];
+		}
+	}
+	
+
+	
+	function _toString() {
+		var s = "";
+		var once = true;
+		for (i in this.arguments) {
+			if (once) {
+				s += "?";
+				once = false;
+			}
+			s += this.arguments[i].name;
+			s += equalsign;
+			s += this.arguments[i].value;
+			s += separator;
+		}
+		return s.replace(/ /g, "%20");
+	}
+	
+	function _getArg(name) {
+		if (typeof(this.arguments[name].name) != "string")
+			return null;
+		else
+			return this.arguments[name].value;
+	}
+	
+	function _setArg(name,value) {
+		this.arguments[name] = new Object()
+		this.arguments[name].name = name;
+		this.arguments[name].value = value;
+	}
+	
+	function _removeArg(name) {
+		this.arguments[name] = null;
+	}
+	
+	return this;
+}
+
+function makeTable(a) {
+	var str = "";
+	str += "<table cellspacing='0' cellpadding='1'>";
+	str += "<thead><tr><td>Argument Name</td><td>Argument Value</td></tr></thead><tbody>";
+
+
+	for (i in a.arguments) {
+		str += "<tr><td>" + a.arguments[i].name + "</td><td>" + a.arguments[i].value + "</td></tr>";
+	}
+
+	str += "</tbody></table>";
+	
+	document.write(str);
+}
+
+
+</SCRIPT></HEAD>
+<BODY bgcolor="white">
+<FONT face="arial" color="navy" size="2">
+
+<B><BIG><CENTER>Communiquer avec la fenêtre appelante</CENTER></BIG></B><BR>
+Depuis le popup il est possible d'atteindre l'objet <SPAN class=code>window</SPAN> de la fenêtre appelante grâce à <SPAN class=code>window.opener</SPAN>. On peut ainsi modifier le contenu de la fenêtre appelante ou récupérer des informations du popup pour les replacer dans un formulaire de la fenêtre appelante.<BR>
+Cet exemple permet de placer dans le champ <SPAN class="code">choix</SPAN> du formulaire <SPAN class="code">origine</SPAN>
+
+<BR><BR><BR>
+
+<FORM name='origine'>
+	Votre choix <INPUT type="text" name="choix" disabled>&nbsp;<a href="javascript:OuvrirPopup('appelee.html','popupchoix','width=300,height=400,menubar=no,status=no');"><img src="upload.gif" width="16" height="16" border="0"></a><BR>
+	<INPUT type="button" value="Passer à la suite" onClick="called();"><BR>
+</FORM>
+</FONT>
+<script>
+	var a = new ArgumentURL();
+	makeTable(a)
+</script>
+</BODY></HTML>
+<!-- Script développé par Olivier Hondermarck  webmaster@toutjavascript.com -->
+<!-- D'autres scripts et des conseils sur http://www.toutjavascript.com -->
