@@ -7,6 +7,9 @@
 session_start();
 include("include/classeForms.php");
 include("include/classeBases.php");
+$base = New Bdd;
+$base->bdd_connecter_base(midas);
+echo "initialisation treminée";
 $f= New Forms;
 $f->frm_Init(false, "80px");
 	
